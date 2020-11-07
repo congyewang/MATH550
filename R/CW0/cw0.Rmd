@@ -1,0 +1,106 @@
+---
+title: "R Coursework 0"
+author: 
+  - "Name: Congye Wang"
+  - "Student ID: 35427962"
+
+date: "Oct 1st, 2020"
+output: pdf_document
+---
+
+# Question 1
+```{r}
+# Function and Parameter
+ages <- seq(from=0, to=12, by=0.1)
+a <- -2.3907
+b <- 2.300
+l <- a + b * ages^(1 / 3)
+
+# Data
+trout.age <- c(1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 6, 6, 6, 7, 7, 7, 8, 8,
+8, 9, 11, 12, 12, 12)
+trout.pcb <- c(0.6 , 1.6, 0.5, 1.2, 2.0, 1.3, 2.5,
+2.2, 2.4, 1.2, 3.5, 4.1, 5.1, 5.7,
+3.4, 9.7, 8.6, 4.0, 5.5, 10.5, 17.5, 13.4, 4.5, 30.4, 12.4, 13.4, 26.2, 7.4)
+
+# Plot
+plot(x = trout.age, y = log(trout.pcb))
+lines(x = ages, y = l, type = "l", col = "blue")
+```
+
+# Question 2
+```{r}
+# Function
+log_predict <- function(a, b, ages) {
+
+  return(a + b * ages^(1 / 3))
+
+}
+
+# Data
+ages <- seq(from = 0, to = 12, by = 0.1)
+
+# Print results
+a <- -2.3907
+b <- 2.300
+
+l_log <- log_predict(a = a, b = b, ages = ages)
+print(l)
+```
+
+# Question 3
+```{r}
+# Data
+ages_expansion <- seq(from = 0, to = 20, by = 0.1)
+
+# Plot
+y_expansion <- log_predict(a = a, b = b, ages = ages_expansion)
+plot(x = ages_expansion, y = y_expansion, type = "l", col = "red")
+```
+
+# Question 4
+The maximum expected/predicted log(PCB) is `r max(y_expansion)`.
+
+# Question 5
+## Question 5(a)
+```{r}
+# Function and Parameter
+a_power <- -4.865
+b_power <- 4.7016
+c_power <- 0.1969
+
+power_predict <- function(a, b, c, ages) {
+  
+  l <- a + b * ages^(c)
+  
+  return(l)
+}
+
+# Print Results
+l_power <- power_predict(a = a_power, b = b_power, c = c_power, ages = ages)
+print(l_power)
+```
+
+## Question 5(b)
+```{r}
+# Bates-Watts Estimator Summary
+summary(l_log)
+```
+
+```{r}
+# New Estimator Summary
+summary(l_power)
+```
+
+## Question 5(c)
+```{r}
+# Real Data Plot
+plot(x = trout.age, y = log(trout.pcb), xlab = "Ages", ylab = "Log(PCB)")
+# Bates-Watts Estimator Plot
+lines(x = ages, y = l_log, type = "l", col = "red")
+# Power Function Estimator Plot
+lines(x = ages, y = l_power, type = "l", col = "blue")
+# Legend Adjustment
+legend("topright", pch = c(15,15),legend = c("Bates-Watts Estimator","Power Function 
+Estimator"), col = c("red", "blue"), bty="n")
+```

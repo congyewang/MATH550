@@ -1,0 +1,110 @@
+---
+title: "R Coursework 1"
+author: 
+  - "Name: Congye Wang"
+  - "Student ID: 35427962"
+
+date: "Oct 7th, 2020"
+output: pdf_document
+---
+
+```{r}
+# Import Packages
+library(tidyverse)
+```
+
+# Question 1
+```{r}
+# Load Data
+df <- read.csv("./accidents2014.csv", header = TRUE)
+t1 <- data.frame(
+
+  Variable = c("Reference.Number", "Grid.Ref..Easting", "Grid.Ref..Northing",
+"Number.of.Vehicles","Number.of.Casualties", "Accident.Date", "Time..24hr.",
+"X1st.Road.Class", "Road.Surface", "Lighting.Conditions", "Weather.Conditions",
+"Casualty.Class", "Casualty.Severity", "Sex.of.Casualty", "Age.of.Casualty",
+"Type.of.Vehicle"),
+  
+  Description = c("Reference number of accident", "East(-west) grid reference for accident",
+"North(-south) grid reference for accident", "Number of vehicles involved in the accident",
+"Number of casualties as a result of the accident", "Date of accident",
+"Time of accident on the 24 hour clock",
+"Class of road (details given in accidentguidance.csv)",
+"Road surface conditions (details given in accidentguidance.csv)",
+"Lighting conditions (details given in accidentguidance.csv)",
+"Weather conditions (details given in accidentguidance.csv)",
+"Class of casualty (details given in accidentguidance.csv)",
+"Severity of casualty (details given in accidentguidance.csv)",
+"Sex of casualty (1 - Male; 2 - Female)", "Age of casualty (in years)",
+"Type of vehicle (details given in accidentguidance.csv)")
+)
+
+# Check Headers
+df_headers_names <- sort(names(df))
+std_headers_names <- sort(t1$Variable)
+
+for (i in 1:length(df_headers_names)) {
+
+  if (df_headers_names[i] != std_headers_names[i]) {
+
+    print(paste("False", "No.", i, "\n"))
+
+  }
+
+  else {
+
+    next
+
+  }
+
+}
+
+# Print Dimensions
+nrow(df)
+ncol(df)
+dim(df)
+```
+As a result, the number of the data frame's columns is `r ncol(df)`, and that of rows is `r nrow(df)`.
+
+# Question 2
+```{r}
+# Screen Data
+vars <- c("Accident.Date", "Time..24hr.", "Road.Surface", "Lighting.Conditions",
+"Weather.Conditions")
+df_2_1 <- select(df, -one_of(vars))
+df_2_2 <- filter(df_2_1, (Type.of.Vehicle == 9) & (X1st.Road.Class != 1))
+
+# Print Dimensions
+nrow(df_2_2)
+ncol(df_2_2)
+dim(df_2_2)
+```
+As a result, the number of the data frame's columns is `r ncol(df_2_2)`, and that of rows is `r nrow(df_2_2)`.
+
+# Question 3
+```{r}
+# Distance Calculation Function
+distance_calculate <- function(a, b) {
+
+  return(sqrt((a - 429967)^2 + (b - 434260)^2))
+
+}
+
+# Add the Distance of the Accident from the Centre of Leeds in Metres to the Accident Data Frame
+df.distance.of.accident <- distance_calculate(df$Grid.Ref..Easting,
+df$Grid.Ref..Northing)
+df <- mutate(df, Distance.of.Accident = df.distance.of.accident)
+
+# Using the Modified Data from Question 2
+df_3 <- mutate(df_2_2, Distance.of.Accident = distance_calculate(
+df_2_2$Grid.Ref..Easting,
+df_2_2$Grid.Ref..Northing))
+df_3 <- arrange(df_3, df_3$Distance.of.Accident)
+tail(df_3)
+```
+
+# Question 4
+```{r}
+# Plot Histogram
+qplot(x=Age.of.Casualty, data=df_3, geom="histogram", binwidth = 10)
+```

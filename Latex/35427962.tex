@@ -1,0 +1,59 @@
+\documentclass[a4paper,11pt,conference]{IEEEtran}
+
+% \usepackage[backend=biber,style=apa]{biblatex}
+% \addbibresource{ref.bib}
+% \usepackage{apacite}
+\usepackage{url}
+\usepackage{pdfpages}
+\usepackage{graphicx} % For including graphics (via \includegraphics).
+\usepackage{amsmath}  % Improves typographic quality of mathematical output.
+\usepackage{amsfonts} % For mathematical fonts.
+\usepackage{amsthm} % Needed to typeset theorem environments.
+\usepackage[affil-it]{authblk} % Needed for author and affiliation.
+\usepackage{amsopn} % Allows the declaration of new mathematical operators.
+\usepackage{amssymb} % Extended set of mathematical symbols.
+% \usepackage[left=2.5cm,right=2.5cm, top=1.5cm,bottom=1.5cm]{geometry} % Used to adjust the document margins
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{color}
+\title{\textbf{The Wing Length of Blackbirds Analysis Based on OLS Model}}
+\author{35427962}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    The purpose of this paper is to study the related factors of weight change of blackbirds. Since the weight of a blackbird varies greatly, its wing length is generally used to represent its weight instead of its real weight.
+
+    GLM model is used to analyse information on blackbirds from the same garden in the East Midlands between 1988 and 2015. Missing values are filled in using the mean of the column data. Since the same bird is recorded many times in the dataset, it is necessary to filter the duplicate records in the data cleaning. The relevant data show that the time factor should be ignored in the research, so the earliest records of the same bird should be extracted after grouping. The classification variables are used as the independent variable and the wing length as the dependent variable for OLS fitting. As a result, the overall and single coeﬀicients of the model are analyzed by significance. However, the goodness of fit of the model is only 44.8\%.
+
+    The results show that there is a positive correlation between age and wing length, as well as the wing length of the male blackbirds is longer than that of the female.\\
+
+    \noindent \textbf{Key Words:} Blackbirds; OLS; Linear Regression
+  \end{abstract}
+
+\input{Chapter/Introduction.tex}
+
+\input{Chapter/Methods.tex}
+
+\input{Chapter/Results.tex}
+
+\input{Chapter/Discussion.tex}
+
+\nocite{*}
+
+% \printbibliography
+\bibliographystyle{IEEEtranN}
+\bibliography{ref}
+
+\clearpage
+
+\input{Chapter/Appendix.tex}
+
+\clearpage
+
+\includepdf[pages={1-5}]{Code/Code.pdf} 
+
+\end{document}

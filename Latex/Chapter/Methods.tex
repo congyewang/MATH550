@@ -1,0 +1,19 @@
+\section{Methods}
+In this paper, NumPy, Pandas, and Statsmodels libraries in python are used to clean, calculate and analyze the dataset.
+
+For one thing, data needs to be filled and cleaned up. Firstly, based on the information given by the dataset, vacancy value need to be filled at first. The gender of qualitative variables will be filled with the data of the same bird, while the wings and weight of quantitative variables will be filled with the average value of the whole row.
+
+Secondly, genders and ages are recoded using dummy variables. There are only two values, namely 0 and 1. When the variables meet the conditions, the value of the matrix is 1, vice versa.
+
+Finally, according to the suggestions in the analysis of Feu (n.d.) in the data, it can be seen that different data of the same bird species need to be ignored. I grouped the \textit{Ring Number} variable and extracted only the first observation of the grouping results, and then reconstructed the data frame to be calculated.
+
+For another, the adjusted dataset is fitted by the ordinary least square (OLS) model. At the outset, the 0-1 matrix composed of dummy variables is used as the independent variable, while the wing length is the dependent variable. In order to prevent multicollinearity in the model, only n-1 dummy variables are selected for calculation when the type of dummy variable is n.
+
+Therefore, the final OLS model was given as
+
+\begin{equation}
+	y = \beta_{0} + \beta_{1}x_{1} + \beta_{2}x_{2} + \beta_{3}x_{3} + \beta_{4}x_{4} + \beta_{5}x_{5} + \beta_{6}x_{6} + \epsilon
+	\label{1}
+\end{equation}
+
+\noindent where $y$ is the length of blackbird's wing, $x_{1}$ is female, $x_{2}$ is male, $x_{3}$ is adult, $x_{4}$ is the first-year, and $x_{5}$ is juvenile.

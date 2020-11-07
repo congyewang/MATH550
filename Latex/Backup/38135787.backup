@@ -1,0 +1,42 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[backend=biber,style=apa]{biblatex}
+\addbibresource{ref.bib}
+
+\usepackage{url}
+
+\usepackage{graphicx} % For including graphics (via \includegraphics).
+\usepackage{amsmath}  % Improves typographic quality of mathematical output.
+\usepackage{amsfonts} % For mathematical fonts.
+\usepackage{amsthm} % Needed to typeset theorem environments.
+\usepackage[affil-it]{authblk} % Needed for author and affiliation.
+\usepackage{amsopn} % Allows the declaration of new mathematical operators.
+\usepackage{amssymb} % Extended set of mathematical symbols.
+
+\usepackage{upquote} % Upright quotes for verbatim code
+\usepackage[breakable]{tcolorbox}
+
+\title{\textbf{Black Birds}}
+\author{38135787}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+    This paper uses the GLM model to analyse information on blackbirds from the same garden in the East Midlands from 1988 to 2015. Missing data values were filled in using the mean. The classification variable was used as the independent variable and the wing length as the dependent variable for OLS fitting.
+\end{abstract}
+
+\input{Chapter/Introduction.tex}
+
+\input{Chapter/Methods.tex}
+
+\input{Chapter/Results.tex}
+
+\section{Discussion}
+
+\clearpage
+\printbibliography
+
+\end{document}

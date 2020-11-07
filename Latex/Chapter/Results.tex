@@ -1,0 +1,63 @@
+\section{Results}
+
+The following results are calculated using Statsmodels (Seabold, S. and Perktold, J., 2020) library of python as follow.
+
+\begin{table}[!htbp]
+\caption{OLS Regression Results}
+% \centering
+% \begin{tabular}{cccc}
+\begin{tabular}{cccc}
+\toprule
+% Dep. Variable: & Wing & R-squared: & 0.448 \\
+% Model: & OLS & Adj. R-squared: & 0.447 \\
+% Method: & Least Squares & F-statistic: & 346.4 \\
+% Date: & Thu, 05 Nov 2020 & Prob (F-statistic): & 3.12e-272 \\
+% Time: & 00:35:47 & Log-Likelihood: & -5441.6 \\
+% No. Observations: & 2141 & AIC: & 1.090e+04 \\
+% Df Residuals: & 2135 & BIC: & 1.093e+04 \\
+% Df Model: & 5 &  &  \\
+% Covariance Type: & nonrobust
+Var: & Wing & R-sq: & 0.448 \\
+Model: & OLS & Ad. R-sq: & 0.447 \\
+Method: & Least Squares & F: & 346.4 \\
+P: & 3.12e-272 & Log-Likelihood: & -5441.6 \\
+No. Obs: & 2141 & AIC: & 1.090e+04 \\
+Df Res: & 2135 & BIC: & 1.093e+04 \\
+Df Model: & 5 &  &  \\
+Cov Type: & nonrobust \\
+\bottomrule
+\end{tabular}
+\label{tab1}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\begin{tabular}{ccccccc}
+\toprule
+ & coef & std err & t & P\textgreater\textbar t\textbar & [0.025 & 0.975] \\
+\midrule
+const & 130.45 & 0.64 & 204.07 & 0.00 & 129.20 & 131.71 \\
+$Sex_{F}$ & -2.09 & 0.37 & -5.66 & 0.00 & -2.82 & -1.37 \\
+$Sex_{M}$ & 2.23 & 0.36 & 6.24 & 0.00 & 1.52 & 2.93 \\
+$Age_{A}$ & 1.41 & 0.54 & 2.60 & 0.01 & 0.35 & 2.47 \\
+$Age_{F}$ & -2.23 & 0.54 & -4.15 & 0.00 & -3.29 & -1.18 \\
+$Age_{J}$ & -3.96 & 0.57 & -6.95 & 0.00 & -5.07 & -2.84 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% \begin{table}[H]
+% \centering
+% \begin{tabular}{cccc}
+% \toprule
+% Omnibus: & 9.569 & Durbin-Watson: & 1.864\\
+% Prob(Omnibus): & 0.008 & Jarque-Bera (JB): & 10.200\\
+% Skew: & -0.120 & Prob(JB): & 0.00610\\
+% Kurtosis: & 3.238 & Cond. No. & 22.7\\
+% \bottomrule
+% \end{tabular}
+% \end{table}
+
+According to the table \ref{tab1}, it can be seen that the p-value of F-test of overall model is $3.12 \times 10^{-272}$, which is far less than $0.001$, and the p-value of all coefficients' T-test is less than $0.05$. This shows that the model is much significant. As well as, the value of $R^{2}$ is 0.448, which means the goodness of fit of the model was only 44.8\%, independent variables do not explain dependent variables well. The reason is that the model ignores the effect of time on wing length, which makes the model produce endogenous problems.
+
+It can be found in the actual interpretation of the model, the wing length of female is lower than that of male significantly. Similarly, The length of wings of adult blackbirds is longer than that of juveniles. Moreover, the older the age group, the more obvious the increase of wing length.

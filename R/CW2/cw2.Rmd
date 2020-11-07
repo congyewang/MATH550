@@ -1,0 +1,122 @@
+---
+title: "R Coursework 2"
+author:
+- 'Name: Congye Wang'
+- 'Student ID: 35427962'
+date: "Oct 19th, 2020"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+```{r eval=FALSE}
+# Import Packages
+library(tidyverse)
+library(ggplot2)
+```
+
+# Question 1
+```{r}
+R_1 <- 30
+F_1 <- 40
+
+pred_number_i <- function(t, Rt=R_1, Ft=F_1, a=0.05, b=0.0001, g=0.02, choice="t") {
+
+  for (i in 1:t) {
+  
+    Rt_1 <- Rt + a * Rt - b * Rt * Ft
+    Ft_1 <- Ft + b * Rt * Ft - g * Ft
+    Rt <- Rt_1
+    Ft <- Ft_1
+
+  }
+
+    if (choice == "r") {
+      
+      return(Rt)
+      
+    } else if (choice == "f") {
+      
+      return(Ft)
+      
+    } else if (choice == "t") {
+      
+      return(c(Rt, Ft))
+      
+    } else {
+      
+      stop("Str Input Error")
+      
+    }
+  
+
+}
+
+r_i <- pred_number_i(103)
+print(r_i)
+```
+As a result, the number of foxes is `r r_i[2]`, and that of rabbits is `r r_i[1]` in week 103.
+
+# Question 2
+```{r}
+pred_number_ii <- function(t, Rt=R_1, Ft=F_1, a=0.05, b=0.0001, g=0.02, choice="t") {
+  set.seed(60854)
+  for (i in 1:t) {
+
+    Rt_1 <- Rt + rbinom(1, Rt, a) - rbinom(1, Rt * Ft, b)
+    Ft_1 <- Ft + rbinom(1, Rt * Ft, b) - rbinom(1, Ft, g)
+    Rt <- Rt_1
+    Ft <- Ft_1
+
+  }
+
+    if (choice == "r") {
+      
+      return(Rt)
+      
+    } else if (choice == "f") {
+      
+      return(Ft)
+      
+    } else if (choice == "t") {
+      
+      return(c(Rt, Ft))
+      
+    } else {
+      
+      stop("Str Input Error")
+      
+    }
+
+}
+
+r_ii <- pred_number_ii(103)
+print(r_ii)
+```
+As a result, the number of foxes is `r r_ii[2]`, and that of rabbits is `r r_ii[1]` in week 103.
+
+# Question 3
+
+```{r}
+# Creat DataFrame
+t_iii <- seq(1, 103)
+det_rabbits <- sapply(t_iii, pred_number_i, choice = "r")
+det_foxes <- sapply(t_iii, pred_number_i, choice = "f")
+sto_rabbits <- sapply(t_iii, pred_number_ii, choice = "r")
+sto_foxes <- sapply(t_iii, pred_number_ii, choice = "f")
+group_iii <- factor(c(rep("det_rabbits", length(t_iii)), 
+                    rep("det_foxes", length(t_iii)), 
+                    rep("sto_rabbits", length(t_iii)), 
+                    rep("sto_foxes", length(t_iii))))
+t_rep_iii <- rep(t_iii, 4)
+l_iii <- c(det_rabbits, det_foxes, sto_rabbits, sto_foxes)
+LV <- data.frame(time = t_rep_iii, size = l_iii, group = group_iii)
+```
+
+```{r}
+# Plot
+p <- ggplot2::ggplot(LV, ggplot2::aes(x = time, y = size, group = group, color = group)) + 
+  ggplot2::geom_line()
+p
+```
