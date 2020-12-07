@@ -1,0 +1,13 @@
+DATA W1;
+SET CW.violence (KEEP = Month);
+/*i = 1;*/
+PROC SQL;
+	CREATE TABLE CW.Q1 AS
+	SELECT Month, count(Month) as C
+	FROM W1
+	GROUP BY Month;
+QUIT;
+PROC ARIMA;
+	IDENTIFY VAR=C MINIC SCAN ESACF;
+	ESTIMATE P=1 Q=0 PLOT;
+QUIT;
