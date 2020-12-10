@@ -1,0 +1,149 @@
+\documentclass[a4paper, 12pt]{article}
+
+%---------------------------------------------------------%
+%------------------ Document Preamble --------------------%
+%---------------------------------------------------------%
+%-------------------------------------------%
+%---- First load the necessary packages ----%
+%-------------------------------------------%
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{graphicx}
+% For including graphics (via ncludegraphics).
+\usepackage{amsmath}
+% Improves typographic quality of mathematical output.
+\usepackage{amsfonts}
+% For mathematical fonts.
+
+% Package for no indentation and to include a line between paragraphs.
+\usepackage[parfill]{parskip}
+
+% Set the layout of the document.
+\usepackage[left=2.5cm,right=2.5cm, top=1.5cm,bottom=1.5cm]{geometry}
+
+\usepackage{amsthm} % Needed to typeset theorem environments.
+\usepackage[affil-it]{authblk} % Needed for author and affiliation.
+\usepackage{amsopn} % Allows the declaration of new mathematical operators.
+\usepackage{amssymb} % Extended set of mathematical symbols.
+\usepackage{mathrsfs} % Raph Smith's mathematical script font.
+\usepackage{booktabs} % Improves the typographical quality of tables.
+\usepackage{natbib} % Citations and bibliography.
+\usepackage{tikz} % Extends the figure generation capabilities of LaTeX.
+\usepackage{algorithm} % Necessary for including algorithmic structures.
+\usepackage{float} % Allows the creation of own floating environments.
+\usepackage{caption} % Allows the customisation of captions.
+\usepackage{abstract} % For including abstracts in documents.
+\usepackage{listings} % For the inclusion of source code.
+\usepackage{color} % Used for colour commands.
+\usepackage{pgfplots} %extends tikz functionality
+
+% Automatic inclusion of hyperlinks with back references.
+\usepackage[pagebackref]{hyperref}
+
+%-------------------------------------------%
+
+% Making a float for an algorithm.
+\newfloat{algorithm}{t}{lop}
+\renewcommand{\thealgorithm}{\arabic{section}.\arabic{algorithm}}
+
+% Numbers equations by section.
+\numberwithin{equation}{section}
+
+% Add biliography
+% \usepackage[style=apa,backend=biber]{biblatex}
+% \usepackage[backend=biber]{biblatex}
+% \addbibresource{ref.bib}
+% Set biliography style.
+% \bibliographystyle{apalike}
+
+% Commands for special set of numbers.
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\EE}{\mathbb{E}}
+
+% Commands for useful operators.
+\newcommand{\di}{\text{diag}}
+\newcommand{\de}{\mathrm{d}}
+\newcommand{\si}{\Sigma}
+\newcommand{\del}{\Delta}
+\newcommand{\cov}[1]{\, {\rm cov}\left( #1 \right) }
+\newcommand{\var}[1]{\, {\rm var}\left( #1 \right) }
+\newcommand{\toas}{\xrightarrow{\text{a.s.}}}
+\newcommand{\todis}{\xrightarrow{\text{d}}}
+\newcommand{\supp}{\text{supp}}
+\newcommand{\doubint}{\!\int\!\!\!\int}
+
+% Command for text within a math sub/super-script.
+\newcommand{\stext}[1]{\text{\scriptsize{#1}}}
+
+% Command for highlighting pieces of text
+\newcommand{\onote}[1]{\colorbox{orange}{#1}}
+
+% Theorem definitions/
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}[lemma]{Theorem}
+\newtheorem{proposition}[lemma]{Proposition}
+\newtheorem{corollary}[lemma]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}[remark]{Example}
+
+% An environment for centre aligning equations which extend past the text width.
+\newenvironment{longeq}
+ {\begin{displaymath}\begin{lrbox}{\overlongequation}$\displaystyle}
+ {$\end{lrbox}\makebox[0pt]{\usebox{\overlongequation}}\end{displaymath}}
+
+% Listings options.
+
+\lstset{ %
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,           % adds a frame around the code
+tabsize=2,          % sets default tabsize to 2 spaces
+captionpos=b,           % sets the caption-position to bottom
+breaklines=true,        % sets automatic line breaking
+breakatwhitespace=false,    % sets if automatic breaks should only happen at whitespace
+escapeinside={\%*}{*)}          % if you want to add a comment within your code
+}
+
+%-------------------------------------------%
+%------------- File Information ------------%
+%-------------------------------------------%
+\title{\textbf{35427962}}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+%-------------------------------------------%
+%--------------- File Start ----------------%
+%-------------------------------------------%
+\begin{abstract}
+The purpose of this report is to provide answers to questions 1 through 6 and to include descriptive tables and figures on which the answers are based on, and to discuss question 1 in detail using AR(1) model and provide the corresponding explanations. In conclusion, the answer to the first four questions is d, b, a, and c. The ID of 1 and 2 may suffer from high frequency attacks. The effect of the control and restraint training is not predicted to reduce the number of attacks, but it may do the opposite. However, control and restraint training may reduce the lethality of attacks.
+\end{abstract}
+
+\input{Chapter/Q1.tex}
+
+\input{Chapter/Q2.tex}
+
+\input{Chapter/Q3.tex}
+
+\input{Chapter/Q4.tex}
+
+\input{Chapter/Q5.tex}
+
+\input{Chapter/Q6.tex}
+
+\clearpage
+
+\input{Chapter/Appendix.tex}
+
+\end{document}
